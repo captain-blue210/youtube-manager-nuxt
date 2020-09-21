@@ -45,7 +45,7 @@ export default {
       const payload = {
         uri: ROUTES.GET.POPULARS,
         params: {
-          pageToken: this.nextPageToken
+          pageToken: this.nextPageToken,
         }
       }
       this.$store.dispatch('fetchPopularVideos', payload)
