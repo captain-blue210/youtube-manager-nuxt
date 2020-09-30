@@ -10,6 +10,7 @@ export const state = () => ({
     favoriteItems: [],
     searchMeta: {},
     token: '',
+    comments: [],
 })
 
 export const actions = {
@@ -75,6 +76,11 @@ export const actions = {
         const client = createRequestClient(this.$axios, this.$cookies, this)
         const res = await client.get(payload.uri)
         commit('mutateFavoriteVideos', res)
+    },
+    async commentVideo({commit}, payload){
+        const client = createRequestClient(this.$axios, this.$cookies, this)
+        const res = await client.post(payload.uri)
+        commit('mutateCommentVideo', res)
     }
 }
 

@@ -8,6 +8,7 @@ export const ROUTES = {
     },
     POST: {
         TOGGLE_FAVORITE: '/api/favorite/:id/toggle',
+        COMMENT: '/api/comment/:id'
     }
 };
 
