@@ -79,7 +79,7 @@ export const actions = {
     },
     async commentVideo({commit}, payload){
         const client = createRequestClient(this.$axios, this.$cookies, this)
-        const res = await client.post(payload.uri)
+        const res = await client.post(payload.uri, payload.params)
         commit('mutateCommentVideo', res)
     }
 }
@@ -109,6 +109,9 @@ export const mutations = {
     },
     mutateFavoriteVideos(state, payload) {
         state.favoriteItems = payload.items || []
+    },
+    mutateCommentVideo(state, payload) {
+        //state.comments = payload.comments || {}
     }
 }
 
