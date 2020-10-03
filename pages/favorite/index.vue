@@ -8,19 +8,19 @@
                         :video-id="item.id"
                     />
                 </div>
-            </div>
-            <div class="field">
-                <label class="label">Comment</label>
-                <div class="control">
-                    <input v-model="comment" class="input" type="text" placeholder="Text input">
+                <div class="field">
+                    <label class="label">Comment</label>
+                    <div class="control">
+                        <input :id="item.id" name="comment" class="input" type="text">
+                    </div>
                 </div>
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <button
-                        class="button is-link"
-                        @click="comment"
-                    >コメント</button>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button
+                            class="button is-link"
+                            @click="commentVideo(item.id)"
+                        >コメント</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,11 +32,6 @@ import ROUTES from '~/routes/api'
 import AppVideo from '~/components/AppVideo';
 
 export default {
-    data() {
-        return {
-            comment: "",
-        }
-    },
     components: {
         AppVideo
     },
@@ -46,8 +41,14 @@ export default {
         }
     },
     methods: {
-        comment() {
-            this.$store.dispatch("comment", this.comment)
+        commentVideo(videoId) {
+            const params = {
+                comment: document.getElementById(videoId)
+            }
+            this.$store.dispatch("commentVideo", {
+                uri: ROUTES.POST.COMMENT.replace(':id', videoId),
+                payload: params
+            })
         }
     },
     async fetch({store}) {
